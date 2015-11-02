@@ -1,0 +1,21 @@
+{
+  "name": "polylink",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Nisarga Patel <np8@umbc.edu>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Materialize": "materialize#~0.97.1"
+  }
+}
