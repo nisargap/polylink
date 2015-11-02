@@ -67,7 +67,15 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+.msg-success {
 
+    color: green;
+    
+}
+.msg-fail {
+    
+    color: red;
+}
 a {
   color: #00B7FF;
 }

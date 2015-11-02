@@ -10,41 +10,44 @@
     <script src="Materialize/dist/js/materialize.min.js"></script>
   </head>
   <body>
-   {{ taken }}
-   {{ ready }}
-   {{ match }}
     <div class="container">
        <h1>polylink</h1>
        <h5 class="light">a new way to study...</h5>
        <div class="row">
         <div class="col s6">
         <h4>Register a New Account</h4>
+        <p class="msg-success">{{ ready }}</p>
+        <p class="msg-fail">{{ error }}</p>
         <form action="/register" method="post">
             <div class="row">
             <div class="input-field">
             <i class="material-icons prefix">account_circle</i>
-            <input type="text" name="username" placeholder="Username" class="validate" required="" aria-required="true" required><br>
+            <input type="text" id="icon_username" name="username" class="validate" required="" aria-required="true" required>
+            <label for="icon_username">Username</label>
             </div>
             </div>
             <div class="row">
             <div class="input-field">
             <i class="material-icons prefix">email</i>
-            <input type="email" name="email" placeholder="Email Address" class="validate" required="" aria-required="true" required><br>
+            <input type="email" id="icon_email" name="email" class="validate" required="" aria-required="true" required>
+            <label for="icon_email">Email</label>
             </div>
             </div>
             <div class="row">
             <div class="input-field">
             <i class="material-icons prefix">vpn_key</i>
-            <input type="password" name="password" placeholder="Password" pattern=".{6,}" title="6 or more characters" class="validate" required="" aria-required="true" required><br>
+            <input type="password" id="icon_password" name="password" pattern=".{6,}" title="6 or more characters" class="validate" required="" aria-required="true" required>
+            <label for="icon_password">Password</label>
             </div>
             </div>
             <div class="row">
             <div class="input-field">
             <i class="material-icons prefix">replay</i>
-            <input type="password" name="password_again" placeholder="Password Again" pattern=".{6,}" title="6 or more characters" class="validate" required="" aria-required="true" required><br>
+            <input type="password" id="icon_password_again" name="password_again" pattern=".{6,}" title="6 or more characters" class="validate" required="" aria-required="true" required>
+            <label for="icon_password_again">Password Again</label>
             </div>
              </div>
-              <button class="btn waves-effect waves-light  grey darken-4" type="submit" name="action">Submit
+              <button class="btn waves-effect waves-light  grey darken-4" type="submit" name="action">Register
     <i class="material-icons right">send</i>
   </button>
         </form>
