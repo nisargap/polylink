@@ -4,12 +4,22 @@ var Parse = require('../parse-module/parse');
 
 // filesystem module needed for questions/answers storage
 var fs = require('fs');
-
+var session = require('express-session');
 var router = express.Router();
 var indexPartials = { footer : 'footer' };
 var memPartials = { memNav : 'memNav',
                     memHead : 'memHead',
                     memFooter : 'memFooter'};
+String.prototype.hashCode = function(){
+	var hash = 0;
+	if (this.length == 0) return hash;
+	for (i = 0; i < this.length; i++) {
+		char = this.charCodeAt(i);
+		hash = ((hash<<5)-hash)+char;
+		hash = hash & hash; // Convert to 32bit integer
+	}
+	return hash;
+}
 Parse.User.enableUnsafeCurrentUser()
 var currentUser = null;
 
@@ -68,18 +78,10 @@ function getId(question){
   return id;
 
 }
-function loggedIn() {
-    
-    var currentUser = Parse.User.current();
-    
-    if(currentUser){
-        return true;
-    }
-    return false;
-}
 
 router.get('/', function(req, res, next) {
-  if(loggedIn()){
+  
+  if(req.session.user != null){
         res.redirect('/dashboard');
     }
   res.render('index', { title: 'polylink',
@@ -90,7 +92,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-   if(loggedIn()){
+   if(req.session.user != null){
         res.redirect('/dashboard');
     }
   res.render('login', { title: 'dashboard',
@@ -101,11 +103,9 @@ router.get('/login', function(req, res, next) {
 });
 router.get('/dashboard', function(req,res,next) {
 
-    var currentUser = Parse.User.current();
-    if (currentUser) {
-        // do stuff with the user
-        console.log(currentUser.get("username"));
-        res.render('dashboard', {title: 'dashboard',username: currentUser.get("username"), partials: memPartials});
+    if (req.session.user != null) {
+        
+        res.render('dashboard', {title: 'dashboard',username: req.session.user, partials: memPartials});
     } else {
         // show the signup or login page
         res.redirect('login');
@@ -115,11 +115,9 @@ router.get('/dashboard', function(req,res,next) {
 });
 router.get('/getTasks', function(req,res,next) {
     
-    var currentUser = Parse.User.current();
-    
-    if(currentUser){
+    if(req.session.user != null){
         
-        var username = currentUser.get("username");
+        var username = req.session.user;
         
         res.send(JSON.stringify(tasks[username]));
         
@@ -131,10 +129,9 @@ router.get('/getTasks', function(req,res,next) {
 });
 router.get('/addTask', function(req,res,next) {
     
-    var currentUser = Parse.User.current();
-    if(currentUser){
+    if(req.session.user != null){
         
-        var username = currentUser.get("username");
+        var username = req.session.user;
         var task = req.query.t;
         
         if(!tasks[username]){
@@ -159,10 +156,9 @@ router.get('/addTask', function(req,res,next) {
 router.get('/deleteTask', function(req,res,next) {
     
     var id = req.query.id;
-    var currentUser = Parse.User.current();
-    if(currentUser){
+    if(req.session.user != null){
         
-        var username = currentUser.get("username");
+        var username = req.session.user;
         if(id > -1){
             tasks[username].splice(id, 1);
         }else {
@@ -182,7 +178,7 @@ router.get('/deleteTask', function(req,res,next) {
 
 router.get('/question', function(req, res, next) {
     
-    if(loggedIn()){
+    if(req.session.user != null){
         
         
         var qAnswer = null;
@@ -222,6 +218,7 @@ router.get('/question', function(req, res, next) {
 router.get('/logout', function(req, res,next){
     
     req.flash('success', "You have successfully logged out");
+    req.session.destroy();
     Parse.User.logOut();
     res.redirect('/login')
     
@@ -262,6 +259,8 @@ router.post('/login', function(req,res,next) {
       success: function(user) {
             // Do stuff after successful login.
           
+          req.session.user = user.get('username').hashCode();
+          req.session.save();
           console.log("valid user!");
           res.redirect('/dashboard');
       },

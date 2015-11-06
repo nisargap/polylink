@@ -6,7 +6,7 @@ var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
+var uuid = require('uuid');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -18,8 +18,15 @@ app.set('view engine', 'hjs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(session({secret: 'sssshhh', resave: false,
-                saveUninitialized: false}));
+app.use(session({
+  genid: function(req) {
+    return uuid.v1(); // use UUIDs for session IDs
+  },
+  secret: 'keyboard cat',
+    resave : false,
+    saveUninitialized: false
+}));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
