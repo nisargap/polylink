@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "- PolyLink is an open source educational resource network, it gives users the ability to view information in subjects and create academic groups.",
- "scripts": {
+  "scripts": {
     "start": "node ./bin/www"
   },
   "main": "bin/www",
@@ -15,12 +15,13 @@
     "diff": "^2.2.0",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
+    "fs": "^0.0.2",
     "hjs": "^0.0.6",
     "morgan": "^1.6.1",
-    "serve-favicon": "^2.3.0",
-    "fs": "^0.0.2",
+    "parse": "^1.6.8",
     "passport": "^0.3.0",
-    "parse": "^1.6.8"
+    "serve-favicon": "^2.3.0",
+    "uuid": "^2.0.1"
   },
   "devDependencies": {},
   "repository": {
