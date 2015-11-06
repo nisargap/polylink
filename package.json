@@ -1,17 +1,35 @@
 {
   "name": "polylink",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
+  "version": "1.0.0",
+  "description": "- PolyLink is an open source educational resource network, it gives users the ability to view information in subjects and create academic groups.",
+  "main": "app.js",
   "dependencies": {
-    "body-parser": "~1.13.2",
-    "cookie-parser": "~1.3.5",
-    "debug": "~2.2.0",
-    "express": "~4.13.1",
-    "hjs": "~0.0.6",
-    "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
-  }
+    "body-parser": "^1.13.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.3.5",
+    "debug": "^2.2.0",
+    "diff": "^2.2.0",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "hjs": "^0.0.6",
+    "morgan": "^1.6.1",
+    "serve-favicon": "^2.3.0",
+    "fs": "^0.0.2",
+    "passport": "^0.3.0",
+    "parse": "^1.6.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nisargap/polylink.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nisargap/polylink/issues"
+  },
+  "homepage": "https://github.com/nisargap/polylink#readme"
 }
