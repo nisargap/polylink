@@ -1,0 +1,47 @@
+{{> memHead }}
+  </head>
+  <body>
+    {{> memNav }}
+    <div class="container">
+        <div class="row">
+        <div class="col s12 card-panel">
+           <div class="np-padding">
+            <h5>Ask a Question</h5>
+            <form action="/question" method="get">
+                <div class="row">
+                <div class="input-field">
+                <i class="material-icons prefix">question_answer</i>
+                    <textarea id="icon_text" name="q" placeholder="How many states are in the United States?" required="" aria-required="true" required>{{ question }}</textarea>
+                </div>
+                </div>
+                 <button class="btn waves-effect waves-light  grey darken-4" type="submit">Solve
+                  <i class="material-icons right">send</i>
+                  </button>
+            </form>
+            </div>
+            
+            <p class="np-padding">
+            {{ answer }}
+            
+            {{#contr}}
+            <form action="/contribute" method="post">
+            <div class="np-padding">
+            <h5>Contribute an Answer</h5>
+            <div class="row">
+                <div class="input-field">
+                <i class="material-icons prefix">comment</i>
+                    <textarea id="icon_text" name="answer" placeholder="Answer Here" required="" aria-required="true" required></textarea>
+            </div>
+            </div>
+            <input type="hidden" name="q" value="{{ question }}">
+            <button class="btn waves-effect waves-light  grey darken-4" type="submit">Contribute
+                  <i class="material-icons right">send</i>
+                  </button>
+                  </div>
+            </form>
+            {{/contr}}
+            </p>
+        </div>
+        </div>
+    </div>
+    {{> memFooter }}

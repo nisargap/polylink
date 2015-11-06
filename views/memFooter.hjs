@@ -1,0 +1,11 @@
+
+
+    <script src="Materialize/dist/js/materialize.min.js"></script>
+    <script src="javascripts/init.js"></script>
+    <script>
+        $(document).ready(function() {
+    $('select').material_select();
+});
+</script>
+  </body>
+</html>

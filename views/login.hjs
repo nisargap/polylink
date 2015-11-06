@@ -5,7 +5,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link rel="stylesheet" href="Materialize/dist/css/materialize.min.css">
-    
     <script src="jquery/dist/jquery.min.js"></script>
     <script src="Materialize/dist/js/materialize.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -16,11 +15,11 @@
        <h5 class="light">a new way to study...</h5>
        <div class="row">
         <div class="col s6">
-        <h4>Register a New Account</h4>
-        <p class="msg-success">{{ ready }}</p>
+        <h4>Log In to Your Account</h4>
+        <p class="bold">Don't have an account? <a href="/">Register</a></p>
         <p class="msg-fail">{{ error }}</p>
-        <p class="bold">Already have an account? <a href="/login">Log In</a></p>
-        <form action="/register" method="post">
+        <p class="msg-success">{{ success }}</p>
+        <form action="/login" method="post">
             <div class="row">
             <div class="input-field">
             <i class="material-icons prefix">account_circle</i>
@@ -30,26 +29,13 @@
             </div>
             <div class="row">
             <div class="input-field">
-            <i class="material-icons prefix">email</i>
-            <input type="email" id="icon_email" name="email" class="validate" required="" aria-required="true" required>
-            <label for="icon_email">Email</label>
-            </div>
-            </div>
-            <div class="row">
-            <div class="input-field">
             <i class="material-icons prefix">vpn_key</i>
             <input type="password" id="icon_password" name="password" pattern=".{6,}" title="6 or more characters" class="validate" required="" aria-required="true" required>
             <label for="icon_password">Password</label>
             </div>
             </div>
-            <div class="row">
-            <div class="input-field">
-            <i class="material-icons prefix">replay</i>
-            <input type="password" id="icon_password_again" name="password_again" pattern=".{6,}" title="6 or more characters" class="validate" required="" aria-required="true" required>
-            <label for="icon_password_again">Password Again</label>
-            </div>
-             </div>
-              <button class="btn waves-effect waves-light  grey darken-4" type="submit" name="action">Register
+             
+              <button class="btn waves-effect waves-light  grey darken-4" type="submit" name="action">Log In
     <i class="material-icons right">send</i>
   </button>
         </form>
@@ -57,12 +43,8 @@
         <div class="col s6 padding-left">
            <div class="card-panel">
            <div class="np-padding">
-            <h5>What is polylink?</h5>
-            <ul>
-                <li>A free way to share educational resources</li>
-                <li>A free way to create study groups with ease</li>
-            </ul>
-            <img class="fit-container" src="images/inkpen.png" alt="">
+            <h5>A New Way to Learn</h5>
+            <img class="fit-container" src="images/grad.png" alt="">
             </div>
             </div>
         </div>

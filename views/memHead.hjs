@@ -1,0 +1,10 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="Materialize/dist/css/materialize.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="jquery/dist/jquery.min.js"></script>

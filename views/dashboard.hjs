@@ -1,0 +1,59 @@
+{{> memHead }}
+  </head>
+  <body>
+    {{> memNav }}
+    <div class="container">
+        
+        <div class="row">
+        <div class="col s6 card-panel">
+           <div class="np-padding">
+            <h5>Ask a Question</h5>
+            <form action="/question" method="get">
+                <div class="row">
+                <div class="input-field">
+                <i class="material-icons prefix">question_answer</i>
+                    <textarea id="icon_text" name="q" placeholder="How many states are in the United States?" required="" aria-required="true" required></textarea>
+                </div>
+                </div>
+                <div class="row">
+                <div class="input-field col s6">
+                <select id="category-choose" class="category" name="category" required="Please enter a category" aria-required="true" required>
+                  <option value="" disabled selected>Choose a Category</option>
+                  <option value="General">General</option>
+                  <option value="Mathematics">Mathematics</option>
+                  <option value="Physics">Physics</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Geography">Geography</option>
+                </select>
+                </div>
+                </div>
+                 <button class="btn waves-effect waves-light  grey darken-4" type="submit">Solve
+    <i class="material-icons right">send</i>
+  </button>
+            </form>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col s6 card-panel">
+           <div class="np-padding">
+            <h5>To Do List</h5>
+            <form id="tasksForm" method="get">
+                <div class="row">
+                <div class="input-field">
+                <i class="material-icons prefix">toc</i>
+                    <textarea id="task_field" name="taskField" placeholder="Enter a Task" required="" aria-required="true" required></textarea>
+                </div>
+                </div>
+                
+                <button class="btn-floating btn-large waves-effect waves-light grey darken-4" type="submit"><i class="material-icons">add</i>
+              </button>
+            </form>
+            <br>
+            <div id="tasks"></div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <script src="javascripts/dashboard.js"></script>
+    {{> memFooter }}

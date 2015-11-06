@@ -1,39 +1,6 @@
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url(Materialize/dist/font/material-design-icons/Material-Design-Icons.woff); /* For IE6-8 */
-  src: local('Material Icons'),
-       local('MaterialIcons-Regular'),
-       url(Materialize/dist/font/material-design-icons/Material-Design-Icons.woff2) format('woff2'),
-       url(Materialize/dist/font/material-design-icons/Material-Design-Icons.woff) format('woff'),
-       url(Materialize/dist/font/material-design-icons/Material-Design-Icons.ttf) format('truetype');
-}
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
+.input-field .dropdown-content li>span {
+    
+    color: #000;
 }
  /* label color */
 .input-field label {
@@ -42,10 +9,24 @@
 }
 /* label focus color */
 .input-field input[type=text]:focus + label {
- color: #000;
+ color: #b0b0b0;
+}
+.input-field input[type=email]:focus + label {
+ color: #b0b0b0;
+}
+.input-field input[type=password]:focus + label {
+ color: #b0b0b0;
 }
 /* label underline focus color */
 .input-field input[type=text]:focus {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
+}
+.input-field input[type=email]:focus {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
+}
+.input-field input[type=password]:focus {
  border-bottom: 1px solid #000;
  box-shadow: 0 1px 0 0 #000;
 }
@@ -63,9 +44,24 @@
 .input-field .prefix.active {
  color: #000;
 }
+textarea {
+    resize: none;
+}
+.np-padding {
+    padding: 1em;
+}
+.np-padding-small {
+    padding: 0.8em;
+}
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+option {
+    
+    color: #000;
+}
+.link-dark {
+    color: #000;
 }
 .msg-success {
 
@@ -76,6 +72,19 @@ body {
     
     color: red;
 }
+.fit-container {
+    
+    max-width: 100%;
+    max-height: 100%;
+    
+}
 a {
   color: #00B7FF;
+}
+.delete-button {
+    float: right;
+}
+.card-panel {
+
+    padding: 0.5em;
 }
