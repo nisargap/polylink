@@ -13,6 +13,8 @@
   <body>
     <div class="container">
        <h1>polylink</h1>
+       <!-- experimental feature
+       <a href="{{ url }}">GOOGLE API TEST</a>-->
        <h5 class="light">a new way to study...</h5>
        <div class="row">
         <div class="col s6">
@@ -49,6 +51,7 @@
             <label for="icon_password_again">Password Again</label>
             </div>
              </div>
+             <br><br>
               <button class="btn waves-effect waves-light  grey darken-4" type="submit" name="action">Register
     <i class="material-icons right">send</i>
   </button>

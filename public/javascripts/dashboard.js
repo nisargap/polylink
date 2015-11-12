@@ -1,3 +1,12 @@
+// Cache selectors outside callback for performance. 
+/* sticky menu
+   var $window = $(window),
+       $stickyEl = $('#memNav');
+       elTop = $stickyEl.offset().top;
+
+   $window.scroll(function() {
+        $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
+    });*/
 function deleteTask(id){
             
             $.get( "/deleteTask?id=" + id, function() {

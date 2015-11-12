@@ -34,7 +34,13 @@
             <label for="icon_password">Password</label>
             </div>
             </div>
-             
+            <div class="row">
+             <div class="input-field">
+              <input type="checkbox" id="remember" name="remember" checked="checked" />
+              <label for="remember">Remember Me</label>
+            </div>
+             </div>
+<br>
               <button class="btn waves-effect waves-light  grey darken-4" type="submit" name="action">Log In
     <i class="material-icons right">send</i>
   </button>

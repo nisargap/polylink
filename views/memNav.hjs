@@ -1,8 +1,7 @@
-<nav class="grey darken-5" role="navigation">
+<nav id="memNav" class="grey darken-5 nav-fixed"  role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">polylink</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/friends">Friends</a></li>
         <li><a href="/logout">Log Out</a></li>
       </ul>
 

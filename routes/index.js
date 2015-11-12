@@ -1,15 +1,19 @@
 var express = require('express');
 var diff = require('diff');
-var Parse = require('../parse-module/parse');
+var parseFile = require('../parse-module/parse');
+var rest = require('../lib/rest');
+var Parse = parseFile.parseObj;
 
 // filesystem module needed for questions/answers storage
 var fs = require('fs');
+var gapi = require('../lib/gapi');
 var session = require('express-session');
 var router = express.Router();
 var indexPartials = { footer : 'footer' };
 var memPartials = { memNav : 'memNav',
                     memHead : 'memHead',
                     memFooter : 'memFooter'};
+var authToken = null;
 String.prototype.hashCode = function(){
 	var hash = 0;
 	if (this.length == 0) return hash;
@@ -30,6 +34,40 @@ var config = JSON.parse(configFile);
 // tasks storage
 var tasksFile = fs.readFileSync('site_data/tasks.json');
 var tasks = JSON.parse(tasksFile);
+var authUser;
+function authUserSessionToken(sessionToken, username){
+    
+    var options = {
+        host: 'api.parse.com',
+        port: 443,
+        path: '/1/users/me',
+        method: 'GET',
+        headers: {
+            'X-Parse-Application-Id' : parseFile.appKey,
+            'X-Parse-REST-API-Key' : parseFile.restKey,
+            'X-Parse-Session-Token' : sessionToken
+        }      
+    };
+    
+    rest.getJSON(options, function(statusCode, result){
+        
+        if(statusCode == 200){
+            
+            if(result.username == username){
+                authUser = true;
+                console.log(true);
+            }
+            
+        }
+        else {
+            
+            authUser = false;
+            console.log(false);
+            
+        }
+    });
+    
+}
 
 function appendQuestion(obj){
 
@@ -79,20 +117,33 @@ function getId(question){
 
 }
 
+// google apis oauth2 callback
+router.get('/oauth2callback', function(req, res) {
+  var code = req.query.code;
+  gapi.client.getToken(code, function(err, tokens){
+    authToken = tokens;
+    
+    
+  });
+ 
+  res.redirect('/dashboard');
+
+});
 router.get('/', function(req, res, next) {
   
-  if(req.session.user != null){
+  if(req.session.user != null || req.cookies.remember != null){
         res.redirect('/dashboard');
     }
   res.render('index', { title: 'polylink',
                         ready: req.flash('ready'),
                         error: req.flash('error'),
+                       url: gapi.url,
                        partials : indexPartials
                       });
 });
 
 router.get('/login', function(req, res, next) {
-   if(req.session.user != null){
+   if(req.session.user != null || req.cookies.remember != null){
         res.redirect('/dashboard');
     }
   res.render('login', { title: 'dashboard',
@@ -103,7 +154,7 @@ router.get('/login', function(req, res, next) {
 });
 router.get('/dashboard', function(req,res,next) {
 
-    if (req.session.user != null) {
+    if (req.session.user != null || req.cookies.remember != null) {
         
         res.render('dashboard', {title: 'dashboard',username: req.session.user, partials: memPartials});
     } else {
@@ -115,7 +166,7 @@ router.get('/dashboard', function(req,res,next) {
 });
 router.get('/getTasks', function(req,res,next) {
     
-    if(req.session.user != null){
+    if(req.session.user != null || req.cookies.remember != null){
         
         var username = req.session.user;
         
@@ -129,7 +180,7 @@ router.get('/getTasks', function(req,res,next) {
 });
 router.get('/addTask', function(req,res,next) {
     
-    if(req.session.user != null){
+    if(req.session.user != null || req.cookies.remember != null){
         
         var username = req.session.user;
         var task = req.query.t;
@@ -156,7 +207,7 @@ router.get('/addTask', function(req,res,next) {
 router.get('/deleteTask', function(req,res,next) {
     
     var id = req.query.id;
-    if(req.session.user != null){
+    if(req.session.user != null || req.cookies.remember != null){
         
         var username = req.session.user;
         if(id > -1){
@@ -178,7 +229,7 @@ router.get('/deleteTask', function(req,res,next) {
 
 router.get('/question', function(req, res, next) {
     
-    if(req.session.user != null){
+    if(req.session.user != null || req.cookies.remember != null){
         
         
         var qAnswer = null;
@@ -219,6 +270,10 @@ router.get('/logout', function(req, res,next){
     
     req.flash('success', "You have successfully logged out");
     req.session.destroy();
+    if(req.cookies.remember){
+        // clear cookie
+        res.clearCookie('remember');
+    }
     Parse.User.logOut();
     res.redirect('/login')
     
@@ -259,7 +314,20 @@ router.post('/login', function(req,res,next) {
       success: function(user) {
             // Do stuff after successful login.
           
-          req.session.user = user.get('username').hashCode();
+          //req.session.user = user.get('username').hashCode();
+          req.session.user = user.getSessionToken();
+          
+          authUserSessionToken(user.getSessionToken(), user.getUsername());
+          console.log(req.session.user);
+          
+          if(req.body.remember == 'on'){
+              
+            //console.log('cookie saved');
+            var minute = 60 * 1000;
+            
+            res.cookie('remember', req.session.user, { maxAge: minute });
+          }
+          
           req.session.save();
           console.log("valid user!");
           res.redirect('/dashboard');

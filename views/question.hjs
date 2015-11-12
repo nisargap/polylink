@@ -1,6 +1,6 @@
 {{> memHead }}
   </head>
-  <body>
+  <body class="members">
     {{> memNav }}
     <div class="container">
         <div class="row">

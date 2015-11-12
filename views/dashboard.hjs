@@ -1,13 +1,12 @@
 {{> memHead }}
   </head>
-  <body>
+  <body class="members">
     {{> memNav }}
     <div class="container">
-        
         <div class="row">
         <div class="col s6 card-panel">
            <div class="np-padding">
-            <h5>Ask a Question</h5>
+            <h5>question-o-gon</h5>
             <form action="/question" method="get">
                 <div class="row">
                 <div class="input-field">
@@ -15,6 +14,7 @@
                     <textarea id="icon_text" name="q" placeholder="How many states are in the United States?" required="" aria-required="true" required></textarea>
                 </div>
                 </div>
+                <!-- TODO: add categories
                 <div class="row">
                 <div class="input-field col s6">
                 <select id="category-choose" class="category" name="category" required="Please enter a category" aria-required="true" required>
@@ -27,17 +27,25 @@
                 </select>
                 </div>
                 </div>
+                -->
                  <button class="btn waves-effect waves-light  grey darken-4" type="submit">Solve
     <i class="material-icons right">send</i>
   </button>
             </form>
             </div>
         </div>
+        <div style="margin-left: 0.8em;" class="col s5 card-panel">
+            <div class="np-padding">
+            <h5>resume-o-gon</h5>
+            <p>You currently have no resumes added.</p>
+            <a class="btn waves-effect waves-light  grey darken-4">Add Resume</a>
+           </div>
+        </div>
         </div>
         <div class="row">
         <div class="col s6 card-panel">
            <div class="np-padding">
-            <h5>To Do List</h5>
+            <h5>list-o-gon</h5>
             <form id="tasksForm" method="get">
                 <div class="row">
                 <div class="input-field">
@@ -45,7 +53,6 @@
                     <textarea id="task_field" name="taskField" placeholder="Enter a Task" required="" aria-required="true" required></textarea>
                 </div>
                 </div>
-                
                 <button class="btn-floating btn-large waves-effect waves-light grey darken-4" type="submit"><i class="material-icons">add</i>
               </button>
             </form>
@@ -53,6 +60,29 @@
             <div id="tasks"></div>
             </div>
         </div>
+        <div style="margin-left: 0.8em;" class="col s5 card-panel">
+            <div class="np-padding">
+            <h5>group-o-gon</h5>
+            <a class="btn waves-effect waves-light  grey darken-4">Create a Group</a><br><br>
+            <a class="btn waves-effect waves-light  grey darken-4">Join an Existing Group</a>
+            </div>
+        </div>
+        </div>
+        
+        <div class="row">
+            <div class="col s6 card-panel">
+               <div class="np-padding">
+                <h5>integrate-o-gon</h5>
+                <a class="btn waves-effect waves-light  grey darken-4">Groupme</a><br><br>
+                <a class="btn waves-effect waves-light  grey darken-4">Facebook</a><br><br>
+                </div>
+            </div>
+            <div style="margin-left: 0.8em;" class="col s5 card-panel">
+                <div class="np-padding">
+                    <h5>advise-o-gon</h5>
+                    <p>You must select a campus to utilize this option effectively.</p>
+                </div>
+            </div>
         </div>
     </div>
     <script src="javascripts/dashboard.js"></script>
